@@ -12,15 +12,17 @@ class SuppliersController < ApplicationController
     @suppliers = result["suppliers"]
 
     @suppliers.each do |supplier|
-      department = supplier["departments"].first
-      uf = supplier["positions"].first
-      department_id = department["id"]
+      department = supplier["departments"]&.first
+      department_id = department ? department["id"] : nil
+
+      uf = supplier["positions"]&.first
+      uf_names = uf && uf["uf"].present? ? uf["uf"] : "Sem informação de estado"
 
       suppliers_list << { 
         name_supplier: supplier["name"], 
         id: supplier["id"], 
         category_id: department_id,
-        uf: uf["name"]
+        uf: uf_names
       }
     end
 
