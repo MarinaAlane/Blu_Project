@@ -18,9 +18,9 @@ class SuppliersController < ApplicationController
       uf = supplier["positions"]&.first
       uf_names = uf && uf["uf"].present? ? uf["uf"] : "Sem informação de estado"
 
-      suppliers_list << { 
-        name_supplier: supplier["name"], 
-        id: supplier["id"], 
+      suppliers_list << {
+        name_supplier: supplier["name"],
+        id: supplier["id"],
         category_id: department_id,
         uf: uf_names
       }
