@@ -6,22 +6,23 @@ class SuppliersController < ApplicationController
     @crawler_service = CrawlerService.new
     result = @crawler_service.fetch_data(suppliers_url)
 
+    # VERIFICAR PAGINAÇÃO, QUANTOS SUPPLIERS VÃO APARECER, VÃO SER TODOS? COMO E QUANTO LIMITAR
+    # PENSAR NA VELOCIDADE DO CARREGAMENTO
     suppliers_list = []
     @suppliers = result["suppliers"]
 
     @suppliers.each do |supplier|
       department = supplier["departments"].first
       department_id = department["id"]
-      department_name = department["name"]
 
       suppliers_list << { 
-        name: supplier["name"], 
+        name_supplier: supplier["name"], 
         id: supplier["id"], 
-        department_id: department_id, 
-        department_name: department_name 
+        category_id: department_id, 
       }
     end
 
+    Supplier.create_supplier(suppliers_list)
     render json: suppliers_list
   end
 end
