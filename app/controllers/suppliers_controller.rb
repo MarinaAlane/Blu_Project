@@ -13,12 +13,14 @@ class SuppliersController < ApplicationController
 
     @suppliers.each do |supplier|
       department = supplier["departments"].first
+      uf = supplier["positions"].first
       department_id = department["id"]
 
       suppliers_list << { 
         name_supplier: supplier["name"], 
         id: supplier["id"], 
-        category_id: department_id, 
+        category_id: department_id,
+        uf: uf["name"]
       }
     end
 
