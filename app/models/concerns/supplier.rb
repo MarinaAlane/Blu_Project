@@ -9,4 +9,8 @@ class Supplier < ApplicationRecord
         uf: supplier_data[:uf])
     end
   end
+
+  def self.get_uf
+    Supplier.select(:uf).distinct.pluck(:uf)
+  end
 end

@@ -29,4 +29,10 @@ class SuppliersController < ApplicationController
     Supplier.create_supplier(suppliers_list)
     render json: suppliers_list
   end
+
+  def region_index
+    uf_list = Supplier.get_uf
+
+    render json: uf_list
+  end
 end
