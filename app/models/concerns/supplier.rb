@@ -1,7 +1,6 @@
 class Supplier < ApplicationRecord
   def self.create_supplier(suppliers)
     suppliers.each do |supplier_data|
-      puts supplier_data, '0000000000000'
 
       Supplier.find_or_create_by(
         id: supplier_data[:id],
