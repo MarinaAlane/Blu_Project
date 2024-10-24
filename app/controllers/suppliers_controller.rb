@@ -2,16 +2,19 @@ require_relative "../helpers/crawler_helper.rb"
 
 class SuppliersController < ApplicationController
   def index
+    # definir o params dentro de um each de categories? e daí selecionar o suppliers dentro de cada um
+    suppliers_url = CrawlerHelper::SUPPLIERS.call(params[:category] )
     @crawler_service = CrawlerService.new
-    result = @crawler_service.fetch_data(CrawlerHelper::SUPPLIERS)
+    result = @crawler_service.fetch_data(suppliers_url)
 
-    categories_list = []
-    @categories = result["suppliers"]
+    suppliers_list = []
+    @suppliers = result["suppliers"]
 
-    @categories.each do |category|
-      categories_list << { name: category["name"], id: category["id"] }
+    @suppliers.each do |supplier|
+      department_id = supplier["department"]
+      suppliers_list << { name: supplier["name"], id: supplier["id"], category_id: department_id }
     end
 
-    render json: categories_list
+    render json: suppliers_list
   end
 end
