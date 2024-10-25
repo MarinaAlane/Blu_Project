@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_24_162007) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_25_021631) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_24_162007) do
     t.string "name_category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "country_states", force: :cascade do |t|
+    t.string "name_states"
+    t.string "uf"
   end
 
   create_table "suppliers", force: :cascade do |t|
