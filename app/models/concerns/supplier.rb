@@ -1,3 +1,5 @@
+has_many: country_state
+
 class Supplier < ApplicationRecord
   def self.create_supplier(suppliers)
     suppliers.each do |supplier_data|
@@ -7,9 +9,5 @@ class Supplier < ApplicationRecord
         category_id: supplier_data[:category_id],
         uf: supplier_data[:uf])
     end
-  end
-
-  def self.get_uf
-    Supplier.select(:uf).distinct.pluck(:uf)
   end
 end
