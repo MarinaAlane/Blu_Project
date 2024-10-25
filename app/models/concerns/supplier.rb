@@ -1,5 +1,3 @@
-has_many: country_state
-
 class Supplier < ApplicationRecord
   def self.create_supplier(suppliers)
     suppliers.each do |supplier_data|

@@ -16,7 +16,7 @@ class SuppliersController < ApplicationController
       department_id = department ? department["id"] : nil
 
       uf = supplier["positions"]&.first
-      uf_names = uf && uf["uf"].present? ? uf["uf"] : "Sem informação de estado"
+      uf_names = uf && uf["name"].present? ? uf["name"] : "Sem informação de estado"
 
       suppliers_list << {
         name_supplier: supplier["name"],
