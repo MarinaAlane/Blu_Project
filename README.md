@@ -1,24 +1,14 @@
-# README
+# Blu Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Objetivo
+  API populada por um crawler com endpoints de busca.
 
-Things you may want to cover:
+### Staks
+  - Ruby on Rails: crawler e api
+  - Postgresql: banco de dados
+  - Rspec: testes
+  - Docker: reprodução em outros sistemas de forma fácil
 
-* Ruby version
+## Instruções 
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Clone o repositório
