@@ -29,4 +29,26 @@ class SuppliersController < ApplicationController
     Supplier.create_supplier(suppliers_list)
     render json: suppliers_list
   end
+
+  def search
+    if params[:uf].present?
+      search_by_state_name
+    elsif params[:category_id].present?
+      search_by_category_id
+    else
+      render json: { error: "Por favor, forneça um id ou o nome de um estado para a busca" }, status: :bad_request
+    end
+end
+
+private
+  def search_by_state_name
+    normalized_uf = I18n.transliterate(params[:uf].downcase).gsub(/\s+/, "")
+      suppliers = Supplier.where(
+        "unaccent(LOWER(REPLACE(uf, ' ', ''))) = ?",
+        normalized_uf
+      )
+
+      render json: suppliers.any? ? suppliers : { error: "Nenhum fornecedor encontrado para o estado especificado" },
+      status: suppliers.any? ? :ok : :not_found
+  end
 end

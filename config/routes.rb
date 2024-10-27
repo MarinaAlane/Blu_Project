@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get "/crawler", to: "crawler#index"
-  get "/suppliers", to: "suppliers#index"
+  get "/index", to: "categories#index"
+  get "/fornecedores", to: "suppliers#index"
   get "/estados", to: "country_state#index"
+  get "/busca", to: "suppliers#search"
 end

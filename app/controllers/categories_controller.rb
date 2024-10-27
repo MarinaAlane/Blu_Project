@@ -1,6 +1,6 @@
 require_relative "../helpers/crawler_helper.rb"
 
-class CrawlerController < ApplicationController
+class CategoriesController < ApplicationController
   def index
     @crawler_service = CrawlerService.new
     result = @crawler_service.fetch_data(CrawlerHelper::DEPARTMENTS)
