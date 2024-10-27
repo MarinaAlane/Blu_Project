@@ -33,8 +33,10 @@ class SuppliersController < ApplicationController
   def search
     if params[:uf].present?
       search_by_state_name
-    elsif params[:category_id].present?
+    elsif params[:category].present?
       search_by_category_id
+    elsif params[:name].present?
+      search_by_supplier_name
     else
       render json: { error: "Por favor, forneça um id de uma categoria ou o nome de um estado para a busca" }, status: :bad_request
     end
@@ -52,10 +54,18 @@ private
   end
 
   def search_by_category_id
-    category_id = params[:category_id]
+    category_id = params[:category]
 
     suppliers = Supplier.where(category_id: category_id)
 
+    render json: suppliers.any? ? suppliers : { error: "Nenhum fornecedor encontrado para a categoria especificada" },
+      status: suppliers.any? ? :ok : :not_found
+  end
+  
+  def search_by_supplier_name
+    name = params[:name]
+
+  suppliers = Supplier.where("LOWER(name_supplier) LIKE ?", "%#{name.downcase}%")
     render json: suppliers.any? ? suppliers : { error: "Nenhum fornecedor encontrado para a categoria especificada" },
       status: suppliers.any? ? :ok : :not_found
   end
