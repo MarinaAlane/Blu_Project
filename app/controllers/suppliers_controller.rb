@@ -61,7 +61,7 @@ private
     render json: suppliers.any? ? suppliers : { error: "Nenhum fornecedor encontrado para a categoria especificada" },
       status: suppliers.any? ? :ok : :not_found
   end
-  
+
   def search_by_supplier_name
     name = params[:name]
 
