@@ -36,7 +36,7 @@ class SuppliersController < ApplicationController
     elsif params[:category_id].present?
       search_by_category_id
     else
-      render json: { error: "Por favor, forneça um id ou o nome de um estado para a busca" }, status: :bad_request
+      render json: { error: "Por favor, forneça um id de uma categoria ou o nome de um estado para a busca" }, status: :bad_request
     end
 end
 
@@ -49,5 +49,14 @@ private
 
   render json: suppliers.any? ? suppliers : { error: "Nenhum fornecedor encontrado para o estado especificado" },
     status: suppliers.any? ? :ok : :not_found
+  end
+
+  def search_by_category_id
+    category_id = params[:category_id]
+
+    suppliers = Supplier.where(category_id: category_id)
+
+    render json: suppliers.any? ? suppliers : { error: "Nenhum fornecedor encontrado para a categoria especificada" },
+      status: suppliers.any? ? :ok : :not_found
   end
 end
