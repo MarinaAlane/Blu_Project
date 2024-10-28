@@ -28,10 +28,16 @@
 ### Para visualizar as categorias
   http://localhost:3000/categorias
 
-
-
 ### Para visualizar os estados
   http://localhost:3000/estados
 
+### Para filtrar por estado
+  http://localhost:3000/busca?=uf<nome-do-estado>
+
+### Para filtrar por estado
+  http://localhost:3000/busca?=category<id-da-categoria>
+
+### Para filtrar por nome do fornecedor
+  http://localhost:3000/busca?=name<nome-ou-palavra-que-faça-parte-do-nome-do-fornecedor>
 ### Para visualizar os fornecedores
  http://localhost:3000/fornecedores
