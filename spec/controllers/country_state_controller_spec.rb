@@ -15,7 +15,7 @@ RSpec.describe CountryStateController, type: :controller do
     let(:response_body) { suppliers_data.to_json }
 
     before do
-      stub_request(:get, "http://127.0.0.1:3000/fornecedores")
+      stub_request(:get, "http://127.0.0.1:3000/estados")
         .with(
           headers: {
             'Accept' => '*/*',

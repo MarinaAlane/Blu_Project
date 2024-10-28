@@ -6,8 +6,6 @@ class SuppliersController < ApplicationController
     @crawler_service = CrawlerService.new
     result = @crawler_service.fetch_data(suppliers_url)
 
-    # VERIFICAR PAGINAÇÃO, QUANTOS SUPPLIERS VÃO APARECER, VÃO SER TODOS? COMO E QUANTO LIMITAR
-    # PENSAR NA VELOCIDADE DO CARREGAMENTO
     suppliers_list = []
     @suppliers = result["suppliers"]
 
@@ -40,17 +38,17 @@ class SuppliersController < ApplicationController
     else
       render json: { error: "Por favor, forneça um id de uma categoria ou o nome de um estado para a busca" }, status: :bad_request
     end
-end
+  end
 
-private
+  private
+
   def search_by_state_name
-   uf = params[:uf].downcase.gsub(/\s+/, "")
+    uf = params[:uf].downcase.gsub(/\s+/, "")
 
-  suppliers = Supplier.where("unaccent(LOWER(REPLACE(uf, ' ', ''))
-    ) = unaccent(LOWER(REPLACE(?, ' ', '')))", uf)
+    suppliers = Supplier.where("unaccent(LOWER(REPLACE(uf, ' ', ''))) = unaccent(LOWER(REPLACE(?, ' ', '')))", uf)
 
-  render json: suppliers.any? ? suppliers : { error: "Nenhum fornecedor encontrado para o estado especificado" },
-    status: suppliers.any? ? :ok : :not_found
+    render json: suppliers.any? ? suppliers : { error: "Nenhum fornecedor encontrado para o estado especificado" },
+           status: suppliers.any? ? :ok : :not_found
   end
 
   def search_by_category_id
@@ -59,14 +57,15 @@ private
     suppliers = Supplier.where(category_id: category_id)
 
     render json: suppliers.any? ? suppliers : { error: "Nenhum fornecedor encontrado para a categoria especificada" },
-      status: suppliers.any? ? :ok : :not_found
+           status: suppliers.any? ? :ok : :not_found
   end
 
   def search_by_supplier_name
     name = params[:name]
 
-  suppliers = Supplier.where("LOWER(name_supplier) LIKE ?", "%#{name.downcase}%")
-    render json: suppliers.any? ? suppliers : { error: "Nenhum fornecedor encontrado para a categoria especificada" },
-      status: suppliers.any? ? :ok : :not_found
+    suppliers = Supplier.where("LOWER(name_supplier) LIKE ?", "%#{name.downcase}%")
+
+    render json: suppliers.any? ? suppliers : { error: "Nenhum fornecedor encontrado para o nome especificado" },
+           status: suppliers.any? ? :ok : :not_found
   end
 end

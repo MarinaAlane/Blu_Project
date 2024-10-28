@@ -1,4 +1,6 @@
 class Supplier < ApplicationRecord
+  belongs_to :category
+
   def self.create_supplier(suppliers)
     suppliers.each do |supplier_data|
       Supplier.find_or_create_by(

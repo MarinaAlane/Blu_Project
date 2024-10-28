@@ -57,4 +57,5 @@ group :test do
   gem "selenium-webdriver"
   gem "rspec-rails"
   gem "webmock"
+  gem "factory_bot_rails"
 end
