@@ -30,6 +30,9 @@
 
 ### Para visualizar os estados
   http://localhost:3000/estados
+  
+### Para visualizar os fornecedores
+ http://localhost:3000/fornecedores
 
 ### Para filtrar por estado
   http://localhost:3000/busca?=uf<nome-do-estado>
@@ -38,7 +41,10 @@
   http://localhost:3000/busca?=category<id-da-categoria>
 
 
+## Testes
+
+Para executar os teste digite no console
+   `docker-compose run web rspec`
+
 ### Para filtrar por nome do fornecedor
   http://localhost:3000/busca?=name<nome-ou-palavra-que-faça-parte-do-nome-do-fornecedor>
-### Para visualizar os fornecedores
- http://localhost:3000/fornecedores
