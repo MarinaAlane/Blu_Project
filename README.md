@@ -1,7 +1,7 @@
 # Blu Project
 
 ### Objetivo
-  API populada por um crawler com endpoints de busca.
+  API populada por um crawler do site https://fornecedores.blu.com.br/ com endpoints de busca.
 
 ### Tecnologias Utilizadas
 - Ruby on Rails: Responsável pela lógica do crawler e pela API.
