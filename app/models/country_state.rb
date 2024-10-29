@@ -1,6 +1,5 @@
 class CountryState < ApplicationRecord
   def self.create_states(states_list)
-    puts states_list
     states_list.each do |states_data|
       CountryState.find_or_create_by(
         id: states_data[:id],
