@@ -20,7 +20,7 @@ RSpec.describe SuppliersController, type: :controller do
         .to_return(status: 200, body: response_body, headers: {})
     end
 
-    it "retorna uma lista de fornecedores e salva no banco de dados" do
+    it "returns a list of suppliers and saves it to the database" do
       get :index
 
       suppliers_list = JSON.parse(response.body)
