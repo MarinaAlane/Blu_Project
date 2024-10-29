@@ -40,11 +40,12 @@
 ### Para filtrar por id da categoria
   http://localhost:3000/busca?=category<id-da-categoria>
 
+### Para filtrar por nome do fornecedor
+  http://localhost:3000/busca?=name<nome-ou-palavra-que-faça-parte-do-nome-do-fornecedor>
 
+  
 ## Testes
 
 Para executar os teste digite no console
    `docker-compose run web rspec`
 
-### Para filtrar por nome do fornecedor
-  http://localhost:3000/busca?=name<nome-ou-palavra-que-faça-parte-do-nome-do-fornecedor>
